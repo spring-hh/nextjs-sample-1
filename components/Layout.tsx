@@ -55,7 +55,7 @@ const Layout = ({ children, title = 'HP by NextJS' }: Props) => {
         <title>{titleName}</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
-      <header className="sticky top-0 z-50">
+      <header className="sticky top-0 z-20">
         <nav className="bg-gray-50 w-screen border-b">
           <div className="grid grid-cols-header">
             <div className="flex items-center pl-3 h-header">
