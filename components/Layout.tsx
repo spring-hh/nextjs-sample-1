@@ -24,6 +24,12 @@ const Layout = ({ children, title = 'HP by NextJS' }: Props) => {
   let [menuClass, setMenuClass] = useState(false);
   let [navClass, setNavClass] = useState(false);
 
+  // get this year
+  const getYear = () => {
+    const date = new Date();
+    return date.getFullYear().toString();
+  };
+
   const scrollTarget = (target: any) => scroller.scrollTo(target, { smooth: true, duration: 500, offset: -48 });
 
   const scrollToPage = async (target: any) => {
@@ -86,7 +92,7 @@ const Layout = ({ children, title = 'HP by NextJS' }: Props) => {
       </header>
       <main className="flex flex-1 w-screen">{children}</main>
       <footer className="text-gray-800 w-full h-footer flex justify-center items-center border-t z-20 bg-gray-50">
-        <p>&copy;2022 spring-hh All Rights Reserved.</p>
+        <p>&copy;{getYear()} spring-hh All Rights Reserved.</p>
       </footer>
     </div>
   );
