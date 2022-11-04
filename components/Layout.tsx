@@ -17,6 +17,7 @@ type Header = {
 
 const HEADER_LIST: Header[] = [
   { id: 1, path: '/markdown', name: 'markdown' },
+  { id: 2, path: '/images', name: 'images' },
 ];
 
 const Layout = ({ children, title = 'HP by NextJS' }: Props) => {
