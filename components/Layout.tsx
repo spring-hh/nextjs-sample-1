@@ -64,11 +64,54 @@ const Layout = ({ children, title = 'HP by NextJS' }: Props) => {
 
   const titleName = `${title} | spring-hh`;
 
+  // クリックした要素を取得し、innerModal内の要素かどうかを判定する
+  const getClickedElement = (e: any) => {
+    const clickedElement = e.target;
+    const clickedElementId = clickedElement.id;
+
+    if (clickedElementId === 'innerModal') {
+      return
+    }
+
+    let parentElement = clickedElement.parentElement;
+    
+    while (parentElement) {
+      let parentElementId = parentElement.id;
+
+      if (parentElementId === 'innerModal') {
+        return
+      }
+
+      parentElement = parentElement.parentElement;
+
+      if (parentElement === null) {
+        handleLoginPopup();
+        return
+      }
+    }
+  }
+
+  // クリックした要素の親要素を遡り、特定のクラス名がついている要素を取得
+  const getClickedElementParent = (e: any) => {
+    const clickedElement = e.target;
+    const clickedElementId = clickedElement.id;
+
+    let parentElement = clickedElement.parentElement;
+    let parentElementId = parentElement.id;
+    
+    while (parentElementId !== clickedElementId) {
+      parentElement = parentElement.parentElement;
+      parentElementId = parentElement.id;
+    }
+
+    console.log(parentElementId)
+  }
+
   // login popup
   const loginPopup = (
-    <div className="fixed top-0 left-0 w-full h-full bg-gray-900 bg-opacity-50 flex justify-center items-center z-50">
-      <div className="bg-white w-96 h-96 rounded-lg shadow-lg flex flex-col justify-center items-center">
-        <div className="ml-auto">
+    <div className="fixed top-0 left-0 w-full h-full bg-gray-900 bg-opacity-50 flex justify-center items-center z-50" onClick={(e) => getClickedElement(e)}>
+      <div className="bg-white w-96 h-96 rounded-lg shadow-lg flex flex-col justify-center items-center" id="innerModal">
+        <div className="ml-auto" id="innerModal">
           {/* close button */}
           <button
             onClick={handleLoginPopup}
