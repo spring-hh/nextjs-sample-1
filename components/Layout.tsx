@@ -73,6 +73,39 @@ const Layout = ({ children, title = 'HP by NextJS' }: Props) => {
                   </div>
                 ))}
               </div>
+              <div className="flex items-center justify-end flex-1 pr-3 smx:hidden">
+                <div className="text-gray-800 hover:text-blue-800 px-1 py-2 rounded">
+                  <Link href='/'>
+                    {/* user icon */}
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg" 
+                      className="h-6 w-6"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                      />
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                      />
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                      />
+                    </svg>
+                  </Link>
+                </div>
+              </div>
             </div>
           </div>
           <div className="sm:hidden absolute h-main2 z-10">
