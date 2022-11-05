@@ -1,18 +1,18 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import Layout from '../components/Layout'
-import { useState } from 'react'
-import Dropzone from 'react-dropzone'
+import Head from 'next/head';
+import Image from 'next/image';
+import Layout from '../components/Layout';
+import { useState } from 'react';
+import Dropzone from 'react-dropzone';
 
 export default function Images() {
   // use state for popupflg
-  const [popupFlg, setPopupFlg] = useState(false)
+  const [popupFlg, setPopupFlg] = useState(false);
 
   // use state for acceptedFiles
-  const [acceptedFiles, setAcceptedFiles] = useState<File[]>([])
+  const [acceptedFiles, setAcceptedFiles] = useState<File[]>([]);
 
   // use state for loading
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
 
   // sort by date
   const sortDate = (a: any, b: any) => {
@@ -86,18 +86,27 @@ export default function Images() {
           </button>
         </div>
         {/* drop zone */}
-        <Dropzone onDrop={acceptedFiles => setAcceptedFiles(acceptedFiles)} disabled={loading}>
+        <Dropzone
+          onDrop={(acceptedFiles) => setAcceptedFiles(acceptedFiles)}
+          disabled={loading}
+        >
           {({ getRootProps, getInputProps }) => (
             <section className="flex justify-center items-center">
-              <div {...getRootProps({ className: 'dropzone' })} className="w-80 h-80 border-2 border-gray-300 rounded-lg flex justify-center items-center">
+              <div
+                {...getRootProps({ className: 'dropzone' })}
+                className="w-80 h-80 border-2 border-gray-300 rounded-lg flex justify-center items-center"
+              >
                 <input {...getInputProps()} />
                 {acceptedFiles && acceptedFiles.length > 0 ? (
                   <div className="flex flex-col justify-center items-center">
-                    <div className="text-xl font-bold">{acceptedFiles.length}枚の画像が選択されました</div>
+                    <div className="text-xl font-bold">
+                      {acceptedFiles.length}枚の画像が選択されました
+                    </div>
                   </div>
                 ) : (
                   <div className="text-gray-400">
-                    ここに画像をドラッグ & ドロップするか、クリックして選択してください
+                    ここに画像をドラッグ &
+                    ドロップするか、クリックして選択してください
                   </div>
                 )}
               </div>
@@ -112,22 +121,22 @@ export default function Images() {
                 className="animate-spin h-5 w-5 text-gray-500 mx-auto"
                 viewBox="0 0 24 24"
               >
-                <path
-                  fill="none"
-                  d="M0 0h24v24H0V0z"
-                />
+                <path fill="none" d="M0 0h24v24H0V0z" />
                 <path
                   d="M12 2a10 10 0 00-9.95 9h2.02A8 8 0 1112 4a8 8 0 018 8 7.99 7.99 0 01-4.7 7.34l1.42 1.42A10 10 0 0022 12a10 10 0 00-10-10z"
                   opacity=".3"
                 />
-                <path
-                  d="M12 6a8 8 0 00-8 8 7.99 7.99 0 004.7 7.34l1.42-1.42A6 6 0 1112 6z"
-                />
+                <path d="M12 6a8 8 0 00-8 8 7.99 7.99 0 004.7 7.34l1.42-1.42A6 6 0 1112 6z" />
               </svg>
             </button>
           ) : (
-            <button onClick={() => addImages()} 
-              className={acceptedFiles.length == 0 ? "bg-blue-300 text-white rounded-lg px-4 py-2 mt-4" : "bg-blue-500 text-white rounded-lg px-4 py-2 mt-4"}
+            <button
+              onClick={() => addImages()}
+              className={
+                acceptedFiles.length == 0
+                  ? 'bg-blue-300 text-white rounded-lg px-4 py-2 mt-4'
+                  : 'bg-blue-500 text-white rounded-lg px-4 py-2 mt-4'
+              }
               disabled={acceptedFiles.length == 0}
             >
               画像を保存
@@ -140,23 +149,23 @@ export default function Images() {
 
   return (
     <>
-    {popupFlg && imgPopup}
-    <Layout title='Images'>
-      <div className='w-16'>
-        <button onClick={() => sortDate("","")} className="my-2">
-          <div className='w-16'>日付順</div>
-        </button>
-        <button onClick={() => sortName("","")} className="my-2">
-          <div className='w-16'>名前順</div>
-        </button>
-        <button onClick={() => showPopup()} className="my-2">
-          <div className='w-16'>追加</div>
-        </button>
-      </div>
-      <div className='w-full p-2 border border-gray-300 rounded-md'>
+      {popupFlg && imgPopup}
+      <Layout title="Images">
+        <div className="w-16">
+          <button onClick={() => sortDate('', '')} className="my-2">
+            <div className="w-16">日付順</div>
+          </button>
+          <button onClick={() => sortName('', '')} className="my-2">
+            <div className="w-16">名前順</div>
+          </button>
+          <button onClick={() => showPopup()} className="my-2">
+            <div className="w-16">追加</div>
+          </button>
+        </div>
+        <div className="w-full p-2 border border-gray-300 rounded-md">
           imgaes
-      </div>
-    </Layout>
+        </div>
+      </Layout>
     </>
-  )
+  );
 }
